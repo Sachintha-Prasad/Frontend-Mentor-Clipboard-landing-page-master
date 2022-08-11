@@ -108,6 +108,21 @@ body {
 
 // content 
 
+// scrollbar 
+::-webkit-scrollbar {
+    height: .5rem;
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $Strong-Cyan;
+    border-radius: 10rem;
+}
+
 // btn 
 .ios-btn {
     @include btn($Strong-Cyan);
