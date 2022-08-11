@@ -451,6 +451,7 @@ body {
         gap: 5rem;
 
         width: min(90%, 150rem);
+        animation: slideIn $transition-animation-slidein;
 
         & img {
             width: min(100%, 5rem);
