@@ -1,0 +1,554 @@
+// # Front-end Style Guide
+
+// ## Layout
+
+// The designs were created to the following widths:
+
+// - Mobile: 375px
+// - Desktop: 1440px
+
+// ## Colors
+
+// ### Primary
+
+// - Strong Cyan: hsl(171, 66%, 44%)
+// - Light Blue: hsl(233, 100%, 69%)
+
+// ### Neutral
+
+// - Dark Grayish Blue: hsl(210, 10%, 33%)
+// - Grayish Blue: hsl(201, 11%, 66%)
+
+// ## Typography
+
+// ### Body Copy
+
+// - Font size: 18px
+
+// ### Fonts
+
+// - Family: [Bai Jamjuree](https://fonts.google.com/specimen/Bai+Jamjuree)
+// - Weights: 400, 600
+
+// ## Icons
+
+// For the social icons, you can use the SVGs provided or a font icon library. Some font icon library suggestions can be found below:
+
+// - [Font Awesome](https://fontawesome.com)
+// - [IcoMoon](https://icomoon.io)
+// - [Ionicons](https://ionicons.com)
+
+// google fonts link
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;600&display=swap');
+
+// variable 
+    // font family 
+    $font-primary: 'Bai Jamjuree', sans-serif;
+
+    // colors
+        // primary
+        $Strong-Cyan: hsl(171, 66%, 44%);
+        $Light-Blue: hsl(233, 100%, 69%);
+
+        // neutral
+        $Dark-Grayish-Blue: hsl(210, 10%, 33%);
+        $Grayish-Blue: hsl(201, 11%, 66%);
+
+    // animation transition
+    $transition-btn: .3s ease-in-out;
+    $transition-animation-slidein: 1s ease-in-out;
+    $transition-animation-bounce: 2s linear;
+
+// mixin
+@mixin btn($color) {
+    background-color: $color;
+    border-radius: 10rem;
+    padding: 1em 2em;
+    color: white;
+    font-size: 1.8rem;
+    text-align: center;
+    box-shadow: .1rem .2rem .1rem rgba(34, 34, 34, 0.514), 0 0 .4rem  .05rem $color;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+        // box-shadow: .2rem .2rem .5rem $color;
+        transform: scale(1.1);
+    }
+}
+
+@mixin flex($dir, $align, $justify) {
+    display: flex;
+    flex-direction: $dir;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+
+// reset 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $font-primary;
+}
+
+
+// content 
+
+// btn 
+.ios-btn {
+    @include btn($Strong-Cyan);
+    transition: $transition-btn;
+}
+
+.mac-btn {
+    @include btn($Light-Blue);
+    transition: $transition-btn;
+}
+
+
+// animation
+@keyframes slideIn {
+    0% {
+        transform: translateY(10rem);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(1rem);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    75% {
+        transform: translateY(-1rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+// main section  starts here 
+.main {
+    min-height: 100vh;
+    background-image: url(../images/bg-header-desktop.png);
+    background-repeat: no-repeat;
+    background-size: 100vw 50vh;
+
+    @include flex(row, center, center);
+    
+    .main-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: center;
+        justify-items: center;
+
+        width: min(90%, 100rem);
+        animation: slideIn $transition-animation-slidein;
+
+        & img {
+            width: min(100%, 12rem);
+            margin-bottom: 2rem;
+        }
+
+        & h1 {
+            font-size: 4.8rem;
+            color: $Dark-Grayish-Blue;
+            text-align: center;
+
+            & span {
+                color: $Strong-Cyan;
+            }
+        }
+
+        & p {
+            font-size: 1.8rem;
+            color: $Grayish-Blue;
+            text-align: center;
+            width: min(90%, 70rem);
+            margin-bottom: 3rem;
+        }
+
+        .btn-area {
+            @include flex(row, center, center);
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+    }
+}
+
+// feature section starts here
+.features {
+    // min-height: 100vh;
+    @include flex(row, center, center);
+    margin-bottom: 15rem;
+
+    .features-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+        justify-items: center;
+        row-gap: 5rem;
+        column-gap: 3rem;
+
+        width: min(100%, 160rem);
+        animation: slideIn $transition-animation-slidein;
+
+        .features-heading {
+            grid-column: 1 / 3;
+            @include flex(column, center, center);
+            gap: 2rem;
+
+            & h2 {
+                font-size: 3.2rem;
+                color: $Dark-Grayish-Blue;
+                text-align: center;
+            }
+
+            & p {
+                font-size: 1.8rem;
+                color: $Grayish-Blue;
+                text-align: center;
+                width: min(90%, 70rem);
+            }
+        }
+
+        & img {
+            width: min(90%, 90rem);
+            animation: bounce  $transition-animation-bounce infinite;
+        }
+
+        .features-list {
+            @include flex(column, flex-start, center);
+            gap: 3rem;
+
+            .features-items {
+                @include flex(column, flex-start, center);
+                gap: 1rem;
+
+                & h3 {
+                    font-size: 2rem;
+                    color: $Dark-Grayish-Blue;
+                }
+
+                & p {
+                    font-size: 1.8rem;
+                    color: $Grayish-Blue;
+                    width: min(90%, 40rem);
+                }
+            }
+        }
+    }
+}
+
+// devices section starts here 
+.devices {
+    // min-height: 100vh;
+    @include flex(row, center, center); 
+    margin-bottom: 15rem;
+
+    .devices-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-items: center;
+        row-gap: 5rem;
+
+        width: min(100%, 100rem);
+        animation: slideIn $transition-animation-slidein;
+
+        .devices-heading {
+            @include flex(column, center, center);
+            gap: 2rem;
+
+            & h2 {
+                font-size: 3.2rem;
+                color: $Dark-Grayish-Blue;
+                text-align: center;
+            }
+
+            & p {
+                font-size: 1.8rem;
+                color: $Grayish-Blue;
+                text-align: center;
+                width: min(90%, 70rem);
+            }
+        }
+
+        & img {
+            width: min(100%, 90rem);
+            animation: bounce  $transition-animation-bounce infinite;
+        }
+    }
+}
+
+// tools section starts here
+.tools {
+    // min-height: 100vh;
+    @include flex(row, center, center); 
+    margin-bottom: 15rem;
+
+    .tools-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-items: center;
+        row-gap: 5rem;
+
+        width: min(90%, 120rem);
+        animation: slideIn $transition-animation-slidein;
+
+        .tools-heading {
+            @include flex(column, center, center);
+            gap: 2rem;
+
+            & h2 {
+                font-size: 3.2rem;
+                color: $Dark-Grayish-Blue;
+                text-align: center;
+            }
+
+            & p {
+                font-size: 1.8rem;
+                color: $Grayish-Blue;
+                text-align: center;
+                width: min(90%, 70rem);
+            }
+        }
+
+        .tools-list {
+            @include flex(row, flex-start, space-between);
+            gap: 4rem;
+
+            .tools-items {
+                @include flex(column, center, center);
+                gap: 2rem;
+                width: min(90%, 40rem);
+
+                & img {
+                    width: min(90%, 3.2rem);
+                }
+
+                & h3 {
+                    font-size: 2rem;
+                    text-align: center;
+                    color: $Dark-Grayish-Blue;
+                }
+
+                & p {
+                    font-size: 1.8rem;
+                    color: $Grayish-Blue;
+                    text-align: center;
+                    width: min(100%, 40rem);
+                }
+            }
+        }
+    }
+}
+
+// partners section starts here
+.partners {
+    @include flex(row, center, center); 
+    margin-bottom: 15rem;
+
+    .partners-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        align-items: center;
+        justify-items: center;
+        gap: 5rem;
+
+        width: min(90%, 120rem);
+        animation: slideIn $transition-animation-slidein;
+
+        & img {
+            width: min(100%, 13rem);
+        }
+    }
+}
+
+// downloads section starts here
+.downloads {
+    @include flex(row, center, center); 
+    margin-bottom: 15rem;
+
+    .downloads-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-items: center;
+        gap: 5rem;
+
+        width: min(90%, 120rem);
+        animation: slideIn $transition-animation-slidein;
+
+        .downloads-heading {
+            @include flex(column, center, center);
+            gap: 2rem;
+
+            & h2 {
+                font-size: 3.2rem;
+                color: $Dark-Grayish-Blue;
+                text-align: center;
+            }
+
+            & p {
+                font-size: 1.8rem;
+                color: $Grayish-Blue;
+                text-align: center;
+                width: min(90%, 70rem);
+            }
+        }
+
+        .btn-area {
+            @include flex(row, center, center);
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+    }
+}
+
+// footer section starts here
+.footer {
+    @include flex(row, center, center);
+    background-color: hsla(202, 11%, 66%, 0.185);
+    padding: 3rem;
+
+    .footer-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        align-items: center;
+        justify-items: center;
+        gap: 5rem;
+
+        width: min(90%, 150rem);
+
+        & img {
+            width: min(100%, 5rem);
+        }
+
+        .footer-links {
+            @include flex(row, center, center);
+            flex-wrap: wrap;
+            gap: 3rem;
+
+            & a {
+                font-size: 1.5rem;
+                color: $Dark-Grayish-Blue;
+                text-align: center;
+                transition: $transition-btn;
+            }
+
+            & a:hover {
+                color: $Strong-Cyan;
+            }
+        }
+
+        .social-media {
+            @include flex(row, center, flex-start);
+            gap: 2rem;
+
+            & a {
+                width: min(90%, 2rem);
+                color: $Dark-Grayish-Blue;
+                
+            }
+
+            & a:hover i,
+            & a img:focus-visible {
+                color: $Strong-Cyan;
+                transition: $transition-btn;
+            }
+        }
+    }
+}
+
+// media queary 
+
+// 375px 
+@media (max-width: 375px) {
+    html {
+        font-size: 55%;
+    }
+
+    .footer {
+        .footer-container {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// 768px
+@media (max-width: 768px) {
+    .features {
+        .features-container {
+            grid-template-columns: 1fr;
+
+            .features-heading {
+                grid-column: 1 / 2;
+            }
+
+            & img {
+                width: (90%, 47.5rem);
+            }
+
+            .features-list {
+                align-items: center;
+                
+                .features-items {
+                    align-items: center;
+
+                    & p {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .tools {
+        .tools-container {
+            .tools-list {
+                @include flex(column, center, center);
+                width: min(90%, 60rem);
+            }
+        }
+    }
+
+    .partners {
+        .partners-container {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// end 
